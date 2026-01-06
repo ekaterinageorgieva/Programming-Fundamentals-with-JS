@@ -3,9 +3,16 @@ function inventory(inputData) {
     let heroes = [];
 
     for (const line of inputData) {
-        let [name, level, items] = line.split(` / `);
-        let currentHero = { name, level: Number(level), items, };
-        heroes.push(currentHero);
+        let [name, level, items] = line.split(' / ');
+
+         let heroItems = items
+            ? items.split(', ').sort((a, b) => a.localeCompare(b))
+            : [];
+        heroes.push({
+            name,
+            level: Number(level),
+            items: heroItems
+        });
     }
 
     heroes.sort((a, b) => a.level - b.level)
