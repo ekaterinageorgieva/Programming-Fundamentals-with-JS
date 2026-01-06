@@ -1,17 +1,12 @@
 function piccolo(input) {
-  //create storage collection
   let parking = new Set();
 
-  //for every line of input
-  for (let line of input) {
-    //-parse line
-    let [command, number] = line.split(", ");
+  for (let element of input) {
+    let [command, number] = element.split(", ");
 
     if (command == "IN") {
-      //-if command is IN, car enters parking (store in collection)
       parking.add(number);
     } else {
-      //-else, car exist parking (remove from collection)
       parking.delete(number);
     }
   }
@@ -19,11 +14,8 @@ function piccolo(input) {
   if (parking.size == 0) {
     console.log("Parking Lot is Empty");
   } else {
-    //convert collection to array
     let result = Array.from(parking);
-    //sort by name
     result.sort();
-    //print result
     for (let car of result) {
       console.log(car);
     }
